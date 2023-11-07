@@ -10,25 +10,23 @@ import Foundation
 struct CodeViewState: Equatable {
     var ageUser: String = ""
     var message: String = ""
+    var maxValue: Int = 10
+    var minValue: Int = 0
     
     var isEmptyAge: Bool {
-        ageUser.isEmpty == true
+        ageUser.isEmpty == true ? true : false
     }
     
     var isValidAge: Bool {
-        if let age = Int(ageUser), age >= 0, age <= 10 {
+        if let age = Int(ageUser), age >= minValue, age <= maxValue {
             return true
         }
         return false
     }
     
     var presentSpecialCharacters: Bool {
-        var charSet = CharacterSet.init(charactersIn: "@#$%+_)(")
-        if let strvalue = ageUser.rangeOfCharacter(from: charSet) {
-            return true
-        } else {
-            return false
-        }
+        var charSet = CharacterSet.init(charactersIn: "@#%+_)(!,;:'˜!ˆ&=-}{][/")
+        return ageUser.rangeOfCharacter(from: charSet) != nil
     }
     
     var presentLetters: Bool {

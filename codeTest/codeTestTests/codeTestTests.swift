@@ -16,10 +16,8 @@ final class codeTestTests: XCTestCase {
     override func setUp(){
         super.setUp()
         viewModel = .init()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    
     func testDefaultInitialState(){
         XCTAssertEqual(viewModel.state,
                        CodeViewState(
@@ -45,6 +43,13 @@ final class codeTestTests: XCTestCase {
         XCTAssertTrue(viewModel.state.containsWhitespace, viewModel.state.testError)
     }
     
+    func testIfInputIsEqualMaxValue(){
+        viewModel.updateState(ageUser: "10", message: "")
+        XCTAssertEqual(viewModel.state.ageUser, String(viewModel.state.maxValue))
+    }
     
-
+    func testIfInputIsEqualMinValue(){
+        viewModel.updateState(ageUser: "0", message: "")
+        XCTAssertEqual(viewModel.state.ageUser, String(viewModel.state.minValue))
+    }
 }

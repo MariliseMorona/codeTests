@@ -10,7 +10,7 @@ import SwiftUI
 
 class CodeViewModel: ObservableObject {
     
-    @Published private(set) var state: CodeViewState
+    private(set) var state: CodeViewState
     
     var bindings: (ageUser: Binding<String>, message: Binding<String>){
         return(
@@ -27,6 +27,11 @@ class CodeViewModel: ObservableObject {
         self.state = CodeViewState(ageUser: self.state.ageUser, message: self.state.message)
     }
     
+    var age: String? {
+        didSet {
+            validAgeUser() == true ? (state.ageUser = age ?? "") : (state.ageUser = "")
+        }
+    }
     
     func changeStateButton()-> Bool{
         if state.isEmptyAge {
@@ -37,12 +42,21 @@ class CodeViewModel: ObservableObject {
     }
     
     func validAgeUser() -> Bool {
-        if state.presentSpecialCharacters, state.presentLetters, state.containsWhitespace {
-            updateState(ageUser: "", message: "not value for age.")
+        if state.presentSpecialCharacters || state.presentLetters || state.containsWhitespace {
+            updateState(ageUser: "", message: "")
             return false
         } else {
+            return isValidValueAge()
+        }
+    }
+    
+    func isValidValueAge() -> Bool {
+        if state.isValidAge {
             updateState(ageUser: state.ageUser, message: "is valid age")
             return true
+        } else {
+            updateState(ageUser: "", message: "is not valid age")
+            return false
         }
     }
     
