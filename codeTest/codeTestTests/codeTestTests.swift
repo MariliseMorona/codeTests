@@ -9,7 +9,7 @@
 import XCTest
 import Combine
 
-final class codeTestTests: XCTestCase {
+final class CodeTestTests: XCTestCase {
     
     private var viewModel: CodeViewModel!
 
