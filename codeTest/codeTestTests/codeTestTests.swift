@@ -26,23 +26,23 @@ final class codeTestTests: XCTestCase {
                         ageUser: "",
                         message: ""))
         XCTAssertTrue(viewModel.state.isEmptyAge)
-        XCTAssert(viewModel.state.message.isEmpty)
+        XCTAssert(viewModel.state.message.isEmpty, viewModel.state.testError)
             
     }
     
     func testIfInputPresentCharacters(){
         viewModel.updateState(ageUser: "#23", message: "")
-        XCTAssertTrue(viewModel.state.presentSpecialCharacters)
+        XCTAssertTrue(viewModel.state.presentSpecialCharacters, viewModel.state.testError)
     }
     
     func testIfInputPresentLetters(){
         viewModel.updateState(ageUser: "as3", message: "")
-        XCTAssertTrue(viewModel.state.presentLetters)
+        XCTAssertTrue(viewModel.state.presentLetters, viewModel.state.testError)
     }
     
     func testIfInputContainsWhiteSpace(){
         viewModel.updateState(ageUser: " er", message: "")
-        XCTAssertTrue(viewModel.state.containsWhitespace)
+        XCTAssertTrue(viewModel.state.containsWhitespace, viewModel.state.testError)
     }
     
     
