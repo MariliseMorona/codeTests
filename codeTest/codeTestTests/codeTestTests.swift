@@ -5,31 +5,46 @@
 //  Created by marilise morona on 06/11/23.
 //
 
+@testable import codeTest
 import XCTest
+import Combine
 
 final class codeTestTests: XCTestCase {
+    
+    private var viewModel: CodeViewModel!
 
-    override func setUpWithError() throws {
+    override func setUp(){
+        super.setUp()
+        viewModel = .init()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testDefaultInitialState(){
+        XCTAssertEqual(viewModel.state,
+                       CodeViewState(
+                        ageUser: "",
+                        message: ""))
+        XCTAssertTrue(viewModel.state.isEmptyAge)
+        XCTAssert(viewModel.state.message.isEmpty)
+            
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testIfInputPresentCharacters(){
+        viewModel.updateState(ageUser: "#23", message: "")
+        XCTAssertTrue(viewModel.state.presentSpecialCharacters)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testIfInputPresentLetters(){
+        viewModel.updateState(ageUser: "as3", message: "")
+        XCTAssertTrue(viewModel.state.presentLetters)
     }
+    
+    func testIfInputContainsWhiteSpace(){
+        viewModel.updateState(ageUser: " er", message: "")
+        XCTAssertTrue(viewModel.state.containsWhitespace)
+    }
+    
+    
 
 }
