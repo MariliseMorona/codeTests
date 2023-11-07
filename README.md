@@ -3,7 +3,10 @@ This project is a playground to develop the Tests for the Ágile Methodology dis
 
 ## Acivity
 
-1 - In test-driven development you think about test cases and test data first and then move on to developing a specific software functionality. Suppose you are the designer of test cases for a program that must read a person's age. What test cases and data have you defined for this program? Try to generate test cases and data using the text: https://engenhariasoftware.wordpress.com/2009/05/18/desenvolvendo-a-atividade-de-teste-de-software-%E2%80%93-parte-1/
+1 - In test-driven development you think about test cases and test data first and then move on to developing a specific software functionality. Suppose you are the designer of test cases for a program that must read a person's age. What test cases and data have you defined for this program? Try to generate test cases and data using the text: 
+<a href="https://engenhariasoftware.wordpress.com/2009/05/18/desenvolvendo-a-atividade-de-teste-de-software-%E2%80%93-parte-1/" target="blank" alt="Link de acesso ao texto referência para a atividade.">Desenvolvendo a atividade de teste de software</a>
+
+
 
 ### Unit Tests
 The tests presented in this activity are unit tests or unit tests that aim to measure the code in its smallest fraction.
